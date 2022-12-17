@@ -10,9 +10,23 @@ module V1
     def show 
       render json: @user
     end
+
+    def login 
+      @user = User.find_by_email(params[:email])
+      if @user && @user.authenticate(params[:password])
+        render json: {
+          message: 'login success'
+        }, status: :ok
+      else 
+        render json: {
+          message: 'invalid username or password'
+        }, status: :unauthorized
+      end
+    end
    
-    def create
-      @user = User.create user_params
+    def register
+      @user = User.new user_params
+      @user.save!
       
       if @user.valid?
         render json: @user, status: :created

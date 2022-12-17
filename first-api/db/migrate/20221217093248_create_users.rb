@@ -4,7 +4,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :username, limit: 200, null: false
       t.string :full_name, limit: 255, null: false
       t.string :email, limit: 150, null: false
-      t.string :password, limit: 255, null: false
+      t.string :password_digest, limit: 255, null: false
+      t.string :recovery_password_digest, limit: 255
       t.string :role, limit: 20, default: 'user', null: false
       t.timestamps
     end

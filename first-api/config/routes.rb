@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   namespace :v1 do 
     resources :posts
     resources :users
+    post 'users/login' => 'users#login'
+    post 'users/register' => 'users#register'
   end
 end
